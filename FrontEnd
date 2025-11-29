@@ -1,0 +1,52 @@
+<html5-boilerplate>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Logs</title>
+    <style>
+        .fixed-menu{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #333;
+            color: brown;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .fixed-menu a{
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .fixed-menu a:hover{
+            background-color: #575757;
+        }
+    </style>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="fixed-menu">
+        <h2>Menu</h2>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div style="margin-left: 220px; padding: 20px;">
+        <h1>Welcome to the Website</h1>
+        <p>Scroll down to see the fixed menu in action.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique...</p>
+    </div>
+</body>
+</html>
+</html5-boilerplate>
