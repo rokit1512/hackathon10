@@ -102,7 +102,7 @@
    
 <script>
 
-    const apiUrl = "api/getinfo?id=5";
+    const apiUrl = "/api/getinfo?id=1";
 
     function populateTable(data) {
         const tableBody = document.getElementById("table-body");
@@ -116,7 +116,7 @@
 
             // Safe fallback values:
             const date = item.date || item.createdAt || item.time || "Unknown";
-            const mood = item.mood || item.emotion || item.feeling || "N/A";
+            const moods = item.moods || item.emotion || item.feeling || "N/A";
             const text = item.journalEntry || item.entry || item.text || "No Text";
 
             const dateCell = document.createElement("td");
@@ -124,8 +124,8 @@
             row.appendChild(dateCell);
 
             const moodCell = document.createElement("td");
-            moodCell.textContent = mood;
-            row.appendChild(moodCell);
+            moodsCell.textContent = mood;
+            row.appendChild(moodsCell);
 
             const journalEntryCell = document.createElement("td");
             journalEntryCell.textContent = text;

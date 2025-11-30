@@ -165,7 +165,7 @@ def get_table_from_id():
         # Create a cursor to execute SQL queries
         cursor = connection.cursor()
         ##moods , mood_int, journal_entry, stress
-        cursor.execute('''SELECT date, moods, journalEntry FROM "moodDashboard" WHERE user_id = %s''', id)
+        cursor.execute('''SELECT date, moods, journal_entry FROM "moodDashboard" WHERE user_id = %s''', id)
         records = cursor.fetchall()
         cursor.close()
         connection.close()
