@@ -88,7 +88,7 @@ def upload_daily_entry():
 
 @app.route("/journal", methods=["GET"])
 def serve_html():
-    return render_template("FrontEnd.html")
+    return render_template("pastEntriesWebpage.html")
 
 @app.route("/api/dailyquote", methods=["GET"])
 def get_daily_quote():
