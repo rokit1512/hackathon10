@@ -1,12 +1,14 @@
 from flask import Flask
 from flask import request
 from flask import Response
+from flask import send_file
 from flask_cors import CORS
-import os
 import psycopg2
+
+import os
 import json
 from datetime import datetime
-
+import random
 
 import analysis
 
@@ -79,6 +81,41 @@ def upload_daily_entry():
         return "200 OK", 200
     except Exception as e:
         return f"{e}", 500
+
+@app.route("/api/dailyquote", methods=["GET"])
+def get_daily_quote():
+    try:
+        date = datetime.today().strftime("%d/%m/%Y")
+        randomState = random.Random()
+        randomState.seed(date)
+        with open("./static/quotes.txt") as quoteFile:
+            quotes = quoteFile.readlines()
+            currentQuote = randomState.choice(quotes)
+            return currentQuote, 200
+    except Exception as e:
+        return f"{e}", 500
+
+@app.route("/api/streakimage", methods=["GET"])
+def get_streak_image(): # get url/api/streakimage?streak=number
+    try:
+        streakStr = request.args.get("streak")
+        streak = int(streakStr)
+        if streak == 0:
+            print(streak)
+            return send_file("./static/streak-bad.jpg", mimetype="image/jpeg")
+        elif streak <=10:
+            print(streak)
+            return send_file("./static/streak-okay.jpg", mimetype="image/jpeg")
+        elif streak > 10:
+            return send_file("./static/streak-good.jpg", mimetype="image/jpeg")
+            print(streak)
+        else:
+            print("Error")
+            return "Error", 500
+    except Exception as e:
+        print(e)
+        return "Error", 500
+    
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
