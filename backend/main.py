@@ -153,7 +153,26 @@ def get_streak_from_id():
 
 @app.route("/api/getinfo")
 def get_table_from_id():
-    pass
+    try:
+        id = request.args.get("id")
+        connection = psycopg2.connect(
+        user=USER,
+        password=PASSWORD,
+        host=HOST,
+        port=PORT,
+        dbname=DBNAME
+        )
+        # Create a cursor to execute SQL queries
+        cursor = connection.cursor()
+        ##moods , mood_int, journal_entry, stress
+        cursor.execute('''SELECT date, moods, journalEntry FROM "moodDashboard" WHERE user_id = %s''', id)
+        records = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        return json.dumps(records)
+    except Exception as e:
+        print(e)
+        return "Error", 500
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
