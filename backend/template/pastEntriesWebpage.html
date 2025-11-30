@@ -1,0 +1,160 @@
+<html5-boilerplate>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Journal Entries</title>
+    <style>
+        .top-right-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      z-index: 10
+        }
+        .fixed-menu{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #333;
+            color: brown;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+
+        h1{
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .fixed-menu a{
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .fixed-menu a:hover{
+            background-color: #575757;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .content {
+            margin-left: 220px; /* Matches the width of the fixed menu */
+            padding: 20px;
+        }
+        </style>
+    <script src="script.js" defer></script>
+
+    <body>
+         <div class="fixed-menu">
+        <h2>Menu</h2>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <img src="Top-Right-Icon.webp" alt="Top Right Image" class="top-right-image">
+    <div class = "content">
+        <h1>Select past entries</h1>
+        <p id="loading">Loading...</p>
+    <table id="data-table" style="display:none">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Mood</th>
+                <th>Journal Entry</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
+    </div>
+   
+<script>
+
+    const apiUrl = "/api/getinfo?id=5";
+
+    function populateTable(data) {
+        const tableBody = document.getElementById("table-body");
+        tableBody.innerHTML = "";
+
+        // If API returns {data: [...]}, use data.data
+        const rows = Array.isArray(data) ? data : data.data;
+
+        rows.forEach(item => {
+            const row = document.createElement("tr");
+
+            // Safe fallback values:
+            const date = item.date || item.createdAt || item.time || "Unknown";
+            const mood = item.mood || item.emotion || item.feeling || "N/A";
+            const text = item.journalEntry || item.entry || item.text || "No Text";
+
+            const dateCell = document.createElement("td");
+            dateCell.textContent = date;
+            row.appendChild(dateCell);
+
+            const moodCell = document.createElement("td");
+            moodCell.textContent = mood;
+            row.appendChild(moodCell);
+
+            const journalEntryCell = document.createElement("td");
+            journalEntryCell.textContent = text;
+            row.appendChild(journalEntryCell);
+
+            tableBody.appendChild(row);
+        });
+    }
+
+    function fetchData() {
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("data-table").style.display = "table";
+
+                populateTable(data);
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                document.getElementById("loading").textContent =
+                    "Failed to load data.";
+            });
+    }
+
+    fetchData();
+
+</script>
+
+</body>
+</html>
+</html5-boilerplate>
