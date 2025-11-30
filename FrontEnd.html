@@ -1,0 +1,110 @@
+<html5-boilerplate>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Logs</title>
+    <style>
+		body {
+			background-color: 	#dddddd
+		}
+        .fixed-menu{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #333;
+            color: 	#00868b;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .fixed-menu a{
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .fixed-menu a:hover{
+            background-color: 	#00868b;
+        }
+
+        .top-right-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      z-index: 10
+        }
+    </style>
+    <script src="script.js" defer></script>
+
+
+</head>
+<body>
+    <img src="tpi.webp" alt="Top Right Image" width="1000" height="1000" class="top-right-image">
+
+    <div class="fixed-menu">
+        <h2>Menu</h2>
+        <a href="#home">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#pastlogs">Past Logs</a>
+        <a href="#about">About</a>
+    </div>
+
+    <div style="margin-left: 220px; padding: 20px;">
+        <h1>EmOcean logs</h1>
+        <p>Scroll down to see the fixed menu in action.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique...</p>
+    </div>
+
+
+<div style="margin-left: 280px; padding: 10px; margin-top: 0px;">
+    <form>
+        <label for="journalEntry" style="display: block; margin-bottom: 8px;">
+            Journal Entry:
+        </label>
+
+        <textarea id="journalEntry" name="journalEntry"
+            style="width: 800px; height: 300px;">
+        </textarea>
+    </form>
+</div>
+
+<div style="margin-left: 280px; padding: 20px; margin-top: 10px; display: inline-block">
+    <form>
+        <label for="stress" style="display: block; margin-bottom: 8px;">
+            Stress:
+        </label>
+
+        <input type="text" id="stress" name="stress" size="10">
+    </form>
+</div>
+
+<div style="margin-left: 100px; padding: 20px; display:inline-block">
+    <form>
+        <label for="moods" style="display: block; margin-bottom: 8px;">
+            Which emotion best described your mood today?
+        </label>
+        <select id="moods" name="moods">
+           <option value="happy">Happy</option>
+           <option value="sad">Sad</option>
+           <option value="angry">Angry</option>
+           <option value="anxious">Anxious</option>
+           <option value="neutral">Neutral</option>
+           <option value="ennui">Ennui</option>
+           <option value="calm">Calm</option>
+        </select>
+    </form>
+</div>
+
+<button type="submit">Submit</button>
+</body>
+</html>
+</html5-boilerplate>
