@@ -19,10 +19,10 @@ CORS(app)
 load_dotenv()
 #from supabase example code
 # Fetch variables
-USER = os.getenv("user")
-PASSWORD = os.getenv("password")
-HOST = os.getenv("host")
-PORT = os.getenv("port")
+USER = os.getenv("dbuser")
+PASSWORD = os.getenv("dbpassword")
+HOST = os.getenv("dbhost")
+PORT = os.getenv("dbport")
 DBNAME = os.getenv("dbname")
 
 # Connect to the database
