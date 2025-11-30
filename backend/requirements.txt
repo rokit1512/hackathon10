@@ -4,3 +4,4 @@ dotenv
 vaderSentiment
 psycopg2-binary
 gunicorn
+numpy

@@ -6,6 +6,8 @@ from flask import url_for
 from flask import render_template
 from flask_cors import CORS
 import psycopg2
+import psycopg2.extras
+from numpy import transpose
 
 import os
 import json
@@ -169,7 +171,8 @@ def get_table_from_id():
         records = cursor.fetchall()
         cursor.close()
         connection.close()
-        return {"date": records["date"], "moods": records["moods"], "journalEntry":records["journal_entry"]}
+        d = [{"date": item[0], "moods": item[1], "journalEntry": item[2]} for item in records]
+        return d
     except Exception as e:
         print(e)
         return "Error", 500
