@@ -89,7 +89,15 @@ def upload_daily_entry():
         return f"{e}", 500
 
 @app.route("/journal", methods=["GET"])
-def serve_html():
+def serve_journal():
+    return render_template("pastEntriesWebpage.html")
+
+@app.route("/about", methods="[GET]")
+def serve_about():
+    return render_template("About.html")
+
+@app.route("/pastlogs", methods=["GET"])
+def serve_pastlogs():
     return render_template("pastEntriesWebpage.html")
 
 @app.route("/api/dailyquote", methods=["GET"])
@@ -153,6 +161,7 @@ def get_streak_from_id():
         print(e)
         return "Error", 500
 
+
 @app.route("/api/getinfo")
 def get_table_from_id():
     try:
@@ -172,7 +181,7 @@ def get_table_from_id():
         cursor.close()
         connection.close()
         d = [{"date": item[0], "moods": item[1], "journalEntry": item[2]} for item in records]
-        return d
+        return json.dumps(d)
     except Exception as e:
         print(e)
         return "Error", 500
