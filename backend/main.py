@@ -15,6 +15,7 @@ import analysis
 app = Flask(__name__)
 CORS(app)
 
+load_dotenv()
 #from supabase example code
 # Fetch variables
 USER = os.getenv("user")
