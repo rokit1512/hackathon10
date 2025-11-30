@@ -105,30 +105,27 @@
    
 <script>
 
-    const apiUrl = "/api/getinfo?id=1";
+    const apiUrl = "/api/getinfo?id=1";  // Keep this if your server expects id=1
 
     function populateTable(data) {
         const tableBody = document.getElementById("table-body");
         tableBody.innerHTML = "";
 
-        // If API returns {data: [...]}, use data.data
-        const rows = Array.isArray(data) ? data : data.data;
-
-        rows.forEach(item => {
+        // Your API returns an array directly, so use data as is
+        data.forEach(item => {
             const row = document.createElement("tr");
 
-            // Safe fallback values:
-            const date = item.date || item.createdAt || item.time || "Unknown";
-            const mood = item.moods || item.mood || item.emotion || item.feeling || "N/A";
-            const text = item.journalEntry || item.entry || item.text || "No Text";
+            const date = item.date || "Unknown";
+            const text = item.journalEntry || "No Text";
+            const moods = item.moods || "N/A";   
 
             const dateCell = document.createElement("td");
             dateCell.textContent = date;
             row.appendChild(dateCell);
 
-            const moodCell = document.createElement("td");
-            moodsCell.textContent = mood;
-            row.appendChild(moodsCell);
+            const moodCell = document.createElement("td");  
+            moodCell.textContent = moods;
+            row.appendChild(moodCell);
 
             const journalEntryCell = document.createElement("td");
             journalEntryCell.textContent = text;
@@ -142,21 +139,21 @@
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 document.getElementById("loading").style.display = "none";
                 document.getElementById("data-table").style.display = "table";
-
                 populateTable(data);
             })
             .catch(error => {
-                console.error("Error fetching data:", error);
-                document.getElementById("loading").textContent =
-                    "Failed to load data.";
+                console.error("Fetch Error:", error);
+                document.getElementById("loading").textContent = "Failed to load data.";
             });
     }
 
     fetchData();
 
 </script>
+
 
 </body>
 </html>
