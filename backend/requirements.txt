@@ -1,5 +1,5 @@
 flask
 flask-cors
 dotenv
-vader_sentiment
+vaderSentiment
 psycopg2-binary
