@@ -169,7 +169,7 @@ def get_table_from_id():
         records = cursor.fetchall()
         cursor.close()
         connection.close()
-        return json.dumps(records)
+        return {"date": records["date"], "moods": records["moods"], "journalEntry":records["journal_entry"]}
     except Exception as e:
         print(e)
         return "Error", 500
