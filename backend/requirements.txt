@@ -1,0 +1,5 @@
+flask
+flask-cors
+dotenv
+vader_sentiment
+psycopg2
