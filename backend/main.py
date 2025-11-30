@@ -92,7 +92,7 @@ def upload_daily_entry():
 def serve_journal():
     return render_template("pastEntriesWebpage.html")
 
-@app.route("/about", methods="[GET]")
+@app.route("/about", methods=["GET"])
 def serve_about():
     return render_template("About.html")
 
