@@ -100,6 +100,10 @@ def serve_about():
 def serve_pastlogs():
     return render_template("pastEntriesWebpage.html")
 
+@app.route("/home", methods-["GET"])
+def serve_home():
+    return render_template("FrontEnd.html")
+
 @app.route("/api/dailyquote", methods=["GET"])
 def get_daily_quote():
     try:
