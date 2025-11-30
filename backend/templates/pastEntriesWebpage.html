@@ -119,7 +119,7 @@
 
             // Safe fallback values:
             const date = item.date || item.createdAt || item.time || "Unknown";
-            const moods = item.moods || item.emotion || item.feeling || "N/A";
+            const mood = item.moods || item.mood || item.emotion || item.feeling || "N/A";
             const text = item.journalEntry || item.entry || item.text || "No Text";
 
             const dateCell = document.createElement("td");
